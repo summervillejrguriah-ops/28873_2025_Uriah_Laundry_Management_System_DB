@@ -149,6 +149,39 @@ CREATE TABLE order_items (
    CONSTRAINT ck_items_subtotal    CHECK (subtotal >= 0)
 );
 
+-- ============================================
+-- 6: A_branches
+-- ============================================
+CREATE TABLE A_branches (
+   branch_id      NUMBER        GENERATED ALWAYS AS IDENTITY
+                                 (START WITH 1 INCREMENT BY 1),
+   branch_name    VARCHAR2(50)  NOT NULL,
+   location       VARCHAR2(100) NOT NULL,
+   phone          VARCHAR2(20),
+   CONSTRAINT pk_branches PRIMARY KEY (branch_id)
+);
+
+-- ============================================
+-- 7: A_payments
+-- ============================================
+CREATE TABLE A_payments (
+   payment_id      NUMBER        GENERATED ALWAYS AS IDENTITY
+                                  (START WITH 1 INCREMENT BY 1),
+   order_id        NUMBER        NOT NULL,
+   payment_date    DATE          DEFAULT SYSDATE NOT NULL,
+   payment_method  VARCHAR2(20)  DEFAULT 'CASH' NOT NULL,
+   amount_paid     NUMBER(10,2)  NOT NULL,
+   payment_status  VARCHAR2(20)  DEFAULT 'PAID' NOT NULL,
+   CONSTRAINT pk_payments          PRIMARY KEY (payment_id),
+   CONSTRAINT fk_payments_orders   FOREIGN KEY (order_id)
+                                    REFERENCES A_orders (order_id),
+   CONSTRAINT ck_payments_method   CHECK (payment_method IN
+                                    ('CASH','CARD','MOBILE_MONEY','BANK_TRANSFER')),
+   CONSTRAINT ck_payments_status   CHECK (payment_status IN
+                                    ('PAID','PARTIAL','PENDING','REFUNDED')),
+   CONSTRAINT ck_payments_amount   CHECK (amount_paid >= 0)
+);
+
 --------------------------------------------------------------------------------
 -- Confirmation
 --------------------------------------------------------------------------------
