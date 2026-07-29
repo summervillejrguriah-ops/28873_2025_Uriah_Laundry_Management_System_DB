@@ -163,6 +163,30 @@ INSERT INTO order_items (order_id, service_id, quantity, subtotal) VALUES
    (12, 7, 1, 2500);
 
 --------------------------------------------------------------------------------
+-- 6. A_branches  
+--------------------------------------------------------------------------------
+INSERT INTO A_branches (branch_name, location, phone) VALUES ('Downtown Branch', 'KN 4 Ave, Kigali', '0788111222');
+INSERT INTO A_branches (branch_name, location, phone) VALUES ('Kimironko Branch', 'Kimironko, Kigali', '0788333444');
+INSERT INTO A_branches (branch_name, location, phone) VALUES ('Remera Branch', 'Remera, Kigali', '0788555666');
+INSERT INTO A_branches (branch_name, location, phone) VALUES ('Nyamirambo Branch', 'Nyamirambo, Kigali', '0788777888');
+INSERT INTO A_branches (branch_name, location, phone) VALUES ('Kacyiru Branch', 'Kacyiru, Kigali', '0788999000');
+
+--------------------------------------------------------------------------------
+-- 7. A_Payments 
+--------------------------------------------------------------------------------
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (1, 'CASH', 6500, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (2, 'MOBILE_MONEY', 6500, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (3, 'CARD', 4400, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (4, 'CASH', 9000, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (5, 'MOBILE_MONEY', 7500, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (6, 'CASH', 4500, 'PARTIAL');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (7, 'BANK_TRANSFER', 5000, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (8, 'CARD', 6000, 'PARTIAL');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (9, 'MOBILE_MONEY', 9500, 'PAID');
+INSERT INTO A_payments (order_id, payment_method, amount_paid, payment_status) VALUES (10, 'CASH', 3000, 'PENDING');
+
+
+--------------------------------------------------------------------------------
 -- Sync order totals from order_items, then commit
 --------------------------------------------------------------------------------
 UPDATE orders o
